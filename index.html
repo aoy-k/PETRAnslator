@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta charset="uft-8">
+  <title>ペトランスレーター</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="coder.js"></script>
+</head>
+
+<body>
+  <div id="frame">
+    <section id="loading">
+      <h1 Align="center" style="height:300px;line-height:300px;">now loading...</h1>
+    </section>
+    <section id="loaded" style="display: none;height: 100%;">
+      <section id="main">
+        <div class="title">ペトランスレーター</div>
+        <div>人間の言語を古代ペー語に翻訳します。
+          <br>ついでに他の言語も作れます。
+        </div><br>
+        <section id="field" class="field">
+          <!---->
+        </section>
+        <br>
+        <div>新規言語作成</div>
+        <section id="characterInputSection">
+          <input id="characterInput" maxlength=37 placeholder="使用文字">
+          <input id="characterInputRegs">
+          <input id="characterInputButton" type=button value="新規作成" placeholder="翻訳しない文字の正規表現">
+        </section>
+        <div style="font-size: small;padding-left: 1em;">
+          新規作成について
+          <br>①左側「使用文字」の欄に、使いたい文字群(3~37字)を入力する。
+          <br>②数字や記号を「使用文字」に使いたい場合のみ、右側の欄を編集する。
+          <br>③「新規作成」
+          <br>右側の枠は正規表現です。これに当てはまる文字は変換されず、そのまま出力されます。記号はエスケープ\して下さい。
+        </div>
+      </section>
+    </section>
+  </div>
+</body>
+</html>
