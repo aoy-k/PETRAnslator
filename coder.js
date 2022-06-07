@@ -15,6 +15,10 @@ function $(id) { return document.getElementById(id) }
   return parsed;
 }
 
+function toAlphabetFrom10(n) {
+  return '0123456789abcdefghijklmnopqrstuvwxyz'[n]
+}
+
 /**
  * 文字列←→Unicode
  * 文字列換算での1文字分ずつ処理します。
@@ -156,6 +160,7 @@ class Coder {
       } else {
         re = characters.indexOf(re)
         if (re < 0) { re = ""; }
+        re = toAlphabetFrom10(re)
       }
       numbersStr += re
     }
