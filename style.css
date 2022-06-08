@@ -35,7 +35,14 @@ section div input textarea {
 
 #characterInputSection {
   display: flex;
-  text-align: center;
+}
+
+.inputBox{
+  width: 45%;
+}
+
+.label{
+  font-size: small;
 }
 
 textarea {
@@ -49,8 +56,8 @@ input {
 }
 
 #characterInput,
-#characterInputRegs {
-  width: 45%;
+#characterInputEscapeWords {
+  width: 97%;
 }
 
 #characterInputButton {
