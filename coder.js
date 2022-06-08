@@ -1,6 +1,5 @@
 'use strict';
 
-const DefaultReg = "([、。！!？\\?「」\\[\\]【】（）\\(\\)ww/\\n　 𛀂0-9])"
 function $(id) { return document.getElementById(id) }
 
 /**
@@ -9,7 +8,7 @@ function $(id) { return document.getElementById(id) }
  * @param {Integer} base 
  * @returns Integer 変換された数
  */
- function to10Scale(x, base) {
+function to10Scale(x, base) {
   const parsed = parseInt(x, base);
   if (isNaN(parsed)) { return 0; }
   return parsed;
@@ -63,22 +62,17 @@ Converter.decode = function (c) {
 class Coder {
   /**
    * 
-   * @param {string} characters 任意　変換に使う文字列。1文字の集合。最初1文字は区切りに使われる。最短：3　最長：37
-   * @param {RegExp} regs 任意　ヒットした文字を変換しない正規表現オブジェクト。1文字の集合。
-   * @param {RegExp} escapeReg 任意　ヒットした箇所を変換しない正規表現オブジェクト。(ｶｯｺ)で括ることで、str.splitが区切り文字列ごと返してくれる。
+   * @param {string} characters 変換に使う文字列。1文字の集合。最初1文字は区切りに使われる。最短：3　最長：37
+   * @param {RegExp} escapeWordsReg ヒットした文字を変換しない正規表現オブジェクト。1文字の集合。
+   * @param {RegExp} escapeTagReg ヒットした箇所を変換しない正規表現オブジェクト。(ｶｯｺ)で括ることで、str.splitが区切り文字列ごと返してくれる。
    */
-  constructor(
-    characters = "っぺペ",
-    //regs = /([、。！!？\?「」\[\]【】（）\(\)ww/0-9\n　 𛀂])/g,
-    regs = new RegExp(DefaultReg, "g"),
-    escapeReg = /(＜[^＞]*＞)/g
-  ) {
+  constructor(characters,escapeWordsReg,escapeTagRegExp) {
     this._separator = characters.slice(0, 1);//"っ"
     this._characters = Array.from(characters.slice(1));//["ぺ", "ペ"]
     this._baseNum = this._characters.length;//2
 
-    this._escapeReg = escapeReg;
-    this._regs = regs;
+    this._escapeWordsReg = escapeWordsReg;
+    this._escapeTagRegExp = escapeTagRegExp;
   }
 
   encodeFunction = function (e, targetObj) {
@@ -108,10 +102,10 @@ class Coder {
 
   codingFunc(inputValue, callback) {
 
-    const escapeReg = this._escapeReg;
-    const regs = this._regs;
-    const result = escapeProcess(inputValue, escapeReg, function (s) {
-      return escapeProcess(s, regs, callback, this);
+    const escapeTagRegExp = this._escapeTagRegExp;
+    const escapeWordsReg = this._escapeWordsReg;
+    const result = escapeProcess(inputValue, escapeTagRegExp, function (s) {
+      return escapeProcess(s, escapeWordsReg, callback, this);
     }, this)
     return result;
   }
