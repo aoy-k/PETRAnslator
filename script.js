@@ -1,12 +1,14 @@
 'use strict';
 
-const about =
-  `ペトランスレーター ver. 1.1.0
+const about =`
+ペトランスレーター ver. 1.1.0
   
-更新履歴
-1.1.0 新規言語のエスケープ文字列表記方法を変更。新規言語の説明を更新。細かなバグを修正。
-1.0.1 16文字以上の新言語が使用できないバグを修正。
-1.0.0 リリース`;
+  更新履歴
+  1.1.1 軽微なデザイン変更。
+  1.1.0 新規言語のエスケープ文字列表記方法を変更。新規言語の説明を更新。細かなバグを修正。
+  1.0.1 16文字以上の新言語が使用できないバグを修正。
+  1.0.0 リリース
+`;
 
 
 const defaultCharacters = "っぺペ";
@@ -32,7 +34,7 @@ class CodeInput {
   }
   activate(coder, onChangeFunc, subjectElem) {
     const func = this._func = function (e) { onChangeFunc.call(coder, e, subjectElem) };
-    this._e = this._parentNode.appendChild(makeElement({ type: "textarea", cls: "codeInput", listeningEvent: "input" /*"change"*/, onEventFunction: func }))
+    this._e = this._parentNode.appendChild(makeElement({ type: "textarea", cls: "codeInput", listeningEvent: "input" /*"change"*/, onEventFunction: func ,attName:"placeholder",attValue:"ここに入力"}))
   }
   setValue(val) { return this._e.value = val }
 }
