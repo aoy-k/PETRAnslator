@@ -32,24 +32,25 @@
           <!---->
         </section>
         <br>
+        <hr>
         <div>新規言語作成</div>
         <section id="characterInputSection">
           <div class="inputBox">
             <div class="label">使用文字</div>
-            <input id="characterInput" maxlength=37 placeholder="ここに入力">
+            <input id="characterInput" maxlength=37 placeholder="使用する文字を定義">
           </div>
           <div class="inputBox">
             <div class="label">無変換文字</div>
             <input id="characterInputEscapeWords">
           </div>
-          <input id="characterInputButton" type=button value="新規作成" placeholder="ここに入力">
+          <input id="characterInputButton" type=button value="新規作成" placeholder="無変換文字を定義">
         </section>
         <div style="font-size: small;padding-left: 1em;">
           新規作成について
           <br>①左側「使用文字」の欄に、使いたい文字群(3~37字)を入力する。
           <br>②数字や記号を「使用文字」に使いたい場合のみ、「無変換文字」を編集する。
           <br>③「新規作成」
-          <br>無変換文字は正規表現として評価されます。(エスケープの必要はありません)
+          <br>無変換文字は正規表現として評価されます。(メタ文字のエスケープは不要です。)
           <br>例えば、<span style="font-weight:bold;">「\d」は数字、「\n」は改行、「\s」は空白文字(改行含む)</span>を表します。
         </div>
       </section>
